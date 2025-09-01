@@ -44,6 +44,14 @@ body{
 
 }
 
+.main-body.about{
+    background:none;
+    background-color:#1c1d1f;
+
+}
+
+
+
 .second-page{
     width:100vw;
     height:min-content;
@@ -184,6 +192,10 @@ h1{
     align-items: center;
 }
 
+
+.main-footer{
+    background-color: #1c1d1f;
+}
 @media (max-width: 600px){
     .cards-product ul{
         flex-direction: column;

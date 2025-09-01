@@ -10,6 +10,7 @@ if(!class_exists('MainAssets')){
         self::$version = wp_get_theme()->get('Version');
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
         add_action('after_setup_theme', [$this, 'setup_items']);
+        add_action('widgets_init', [$this, 'register_sidebar']);
 
 
     }
@@ -37,6 +38,18 @@ if(!class_exists('MainAssets')){
         'flex-height' => true,
         'flex-width' => true,
        ]);
+    }
+
+    public function register_sidebar(){
+        register_sidebar(array(
+            'name' => __('Main Sidebar', textdomain),
+            'id' => 'main-sidebar',
+            'description' => 'widgets added here will appear in the sidebar',
+            'before_widget' => '<div id="blog-widget" class="blog-widgets">',
+            'after_widget' => '</div>',
+            'before_title' => '<h3 class="widget_title">',
+            'after_title' => '</h3>'
+        ));
     }
 
 

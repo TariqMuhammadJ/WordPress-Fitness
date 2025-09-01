@@ -8,7 +8,10 @@ if(!function_exists('get_menu')){
 
 if(!function_exists('locate_part')){
     function locate_part($slug){
-        include DIR . "/parts/parts-{$slug}.php";
+        $file =  DIR . "/parts/parts-{$slug}.php";
+        if(file_exists($file)){
+            include $file;
+        }
     }
 }
 

@@ -1,0 +1,9 @@
+.blog-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-section a {
+    color:white;
+    /* import */
+}

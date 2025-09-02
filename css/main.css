@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main-body {
+  background: linear-gradient(105deg, #1c1d1f 0%, #1c1d1f 50%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 90%), var(--hero-img);
+  background-size: auto 100%, 60% 100%;
+  background-position: top left, top right;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  padding: 2vw 8vw;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=main.css.map */

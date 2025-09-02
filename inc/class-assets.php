@@ -15,8 +15,15 @@ if(!class_exists('MainAssets')){
 
     }
 
+    /* filemtime(FITNESS_DIR . '/css/main-style.css') */
+
     public function enqueue_assets(){
         wp_enqueue_style('main-style', FITNESS_DIR . '/css/main-style.css', [], self::$version);
+        wp_enqueue_style('blog-style', FITNESS_DIR . '/css/blog-style.css', [], self::$version);
+        wp_enqueue_script('main-js', FITNESS_DIR . '/js/main.js', [], self::$version);
+        wp_localize_script('main-js', 'my_ajax',[
+            'url' => admin_url('admin-ajax.php')
+        ]);
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
         wp_enqueue_style('google-icon', "https://fonts.googleapis.com/icon?family=Material+Icons");
         wp_enqueue_style('gym-icons', "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");

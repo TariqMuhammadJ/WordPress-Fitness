@@ -11,6 +11,7 @@ if(!class_exists('MainAssets')){
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
         add_action('after_setup_theme', [$this, 'setup_items']);
         add_action('widgets_init', [$this, 'register_sidebar']);
+        
 
 
     }
@@ -45,6 +46,9 @@ if(!class_exists('MainAssets')){
         'flex-height' => true,
         'flex-width' => true,
        ]);
+
+        add_image_size('featured-thumb', 450, 300, true);
+        add_image_size('latest-thumb', 200, 133, true);
     }
 
     public function register_sidebar(){

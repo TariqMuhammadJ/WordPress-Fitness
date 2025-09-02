@@ -7,6 +7,7 @@ if (!class_exists('MainPosts')) {
             add_filter('walker_nav_menu_start_el', [$this,'add_icon_to_menu'], 10, 4);
             add_action('wp_ajax_get_form', [$this, 'display_form_mobile']);
             add_action('wp_ajax_nopriv_get_form', [$this, 'display_form_mobile']);
+            add_filter('excerpt_length', [$this, 'custom_excerpt_length']);
         }
 
         public function display_form_mobile(){
@@ -16,6 +17,9 @@ if (!class_exists('MainPosts')) {
             wp_send_json_success($html);
         }
 
+        public function custom_excerpt_length($length){
+            return 10;
+        }
 
 
         public function add_icon_to_menu($item_output, $item, $depth, $args)
@@ -57,7 +61,7 @@ if (!class_exists('MainPosts')) {
             ]);
 
             if ($latest_pages->have_posts()) :
-?> <ul> <?
+        ?> <ul> <?
                 while ($latest_pages->have_posts()) : $latest_pages->the_post(); ?>
                         <li>
                             <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -83,15 +87,55 @@ if (!class_exists('MainPosts')) {
             if ($featured->have_posts()) :
                 while ($featured->have_posts()) : $featured->the_post(); ?>
                     <article class="featured-post">
-                        <h2><?php the_title(); ?></h2>
-                        <?php the_post_thumbnail('large'); ?>
-                        <?php the_excerpt(); ?>
+                        <?php if (has_post_thumbnail()) : ?>
+                        <div class="post-thumbnail">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('featured-thumb', ['class' => 'featured-img']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                        <div class="text-outro">
+                            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <?php the_excerpt(); ?>
+                        </div>
                     </article>
-<?php endwhile;
+                <?php endwhile;
             endif;
 
             wp_reset_postdata();
         }
+
+
+       public static function latest_posts() {
+        $latest = new WP_Query([
+            'posts_per_page' => 4,
+            'order'          => 'DESC'
+        ]);
+
+        if ($latest->have_posts()) : 
+            while ($latest->have_posts()) : $latest->the_post(); ?>
+                <article <?php post_class(); ?>>
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="post-thumbnail">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('latest-thumb', ['class' => 'latest-img']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="text-outro">
+                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                        <?php the_excerpt(); ?>
+                    </div>
+                </article>
+            <?php endwhile;
+        else :
+            echo '<p>No posts found.</p>';
+        endif;
+
+        wp_reset_postdata();
+    }
+
     }
 
     new MainPosts();

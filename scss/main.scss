@@ -83,7 +83,7 @@ h1{
     &.blog-page{
         background:none;
         background-color: $primary-bg;
-        height: 100vh;
+        min-width: 100vh;
     }
 
     &.second-page{
@@ -304,6 +304,7 @@ i.menu-icon{
     padding:2vw 8vw;
     background-color: #1c1d1f;
     display: flex;
+    min-width:100vw;
     justify-content: space-between;
     align-items: center;
     color:white;

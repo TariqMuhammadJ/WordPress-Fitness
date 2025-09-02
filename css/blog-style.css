@@ -3,7 +3,72 @@
     justify-content: space-between;
 }
 
+
+
 .blog-section a {
     color:white;
     /* import */
+}
+
+.featured-post{
+    display: flex;
+    gap:1rem;
+    align-items: stretch;
+}
+
+
+.blog{
+    display: flex;
+    flex-direction: column;
+}
+
+.latest {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 2rem;
+    margin-top: 2vw;
+}
+
+.latest article {
+    display: flex;
+    flex-direction: row; /* side by side */
+    gap: 1rem;           /* spacing between image & text */
+    align-items: stretch; /* make both sides equal height */
+}
+
+.post-thumbnail {
+    flex: 0 0 30%;       /* lock thumbnail to 30% of article */
+    overflow: hidden;
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* crop nicely, keeps equal size */
+    display: block;
+}
+
+.text-outro {
+    flex: 1;             /* text fills the remaining space */
+}
+
+.text-outro p {
+    margin-top:2vh;
+
+}
+
+
+@media (max-width:1000px){
+    .latest {
+        grid-template-columns: 1fr; /* only 1 article per row */
+    }
+
+   .featured-post{
+    flex-direction: column;
+   }
+
+    .blog-section{
+        flex-direction: column;
+    }
+
 }

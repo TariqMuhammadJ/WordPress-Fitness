@@ -11,9 +11,6 @@
     ?>
 
   </div>
-  <div class="latest">
-
-  </div>
 </footer>
   </body>
 </html>

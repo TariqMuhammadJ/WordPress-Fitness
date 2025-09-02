@@ -63,12 +63,20 @@
         grid-template-columns: 1fr; /* only 1 article per row */
     }
 
+    .latest article .text-outro p{
+        display: none;
+    }
+
    .featured-post{
     flex-direction: column;
    }
 
     .blog-section{
         flex-direction: column;
+    }
+     .post-thumbnail {
+        width: 100%;
+        height: auto;
     }
 
 }

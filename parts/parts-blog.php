@@ -1,6 +1,7 @@
 <main class="main-body blog-page">
     <? get_menu() ?>
     <div class="blog-section">
+
         <section class="blog">
         <div class="featured">
             <?php MainPosts::featured("sports") ?>

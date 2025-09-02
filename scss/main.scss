@@ -5,7 +5,7 @@ $index-font-family : 'roboto';
 $font-title: 5vw;
 $font-medium: 2vw;
 $font-large: 3vw;
-$font-menu:1.5vw;
+$font-menu:2vw;
 $headings : 1.5vw;
 $paragraph : 1.2vw;
 $main-padding: 2vw 8vw;
@@ -23,6 +23,9 @@ $cards-border:2px solid rgb(50, 46, 38);
     padding:0;
     $color:$font-clr;
 }
+
+
+
 
 
 body{
@@ -83,7 +86,7 @@ h1{
     &.blog-page{
         background:none;
         background-color: $primary-bg;
-        min-width: 100vh;
+        /*min-height: 100vh;*/
     }
 
     &.second-page{
@@ -163,7 +166,6 @@ i.menu-icon{
     }
 
     .site-menu ul li{
-        font-size:$font-medium;
         margin-top:1vw;
         margin-bottom:2vw;
         width:100%;
@@ -171,6 +173,8 @@ i.menu-icon{
         align-items: center;
         gap:1rem;
     }
+
+  
 
     i.menu-icon{
         display: block;
@@ -304,7 +308,6 @@ i.menu-icon{
     padding:2vw 8vw;
     background-color: #1c1d1f;
     display: flex;
-    min-width:100vw;
     justify-content: space-between;
     align-items: center;
     color:white;

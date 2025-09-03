@@ -379,6 +379,12 @@ html {
   box-sizing: border-box;
 }
 
+.entry-content a{
+    color:rgba(149, 149, 222, 0.43);
+    text-decoration: underline;
+}
+
+
 .entry-content ol,
 .entry-content ul {
   list-style-type: disc;

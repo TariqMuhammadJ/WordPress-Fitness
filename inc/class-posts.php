@@ -8,7 +8,41 @@ if (!class_exists('MainPosts')) {
             add_action('wp_ajax_get_form', [$this, 'display_form_mobile']);
             add_action('wp_ajax_nopriv_get_form', [$this, 'display_form_mobile']);
             add_filter('excerpt_length', [$this, 'custom_excerpt_length']);
+            add_filter('the_content', [$this, 'mt_add_heading_ids']);
+            add_filter('mt_toc_content', [$this, 'mt_generate_toc']);
         }
+
+        public function mt_add_heading_ids($content){
+             return preg_replace_callback('/<h([1-6])[^>]*>(.*?)<\/h[1-6]>/', function($matches) {
+                    $level = $matches[1];
+                    $text  = strip_tags($matches[2]);
+                    $id    = sanitize_title($text);
+                    return '<h'.$level.' id="'.$id.'">'.$matches[2].'</h'.$level.'>';
+                }, $content);
+        }
+        public function mt_generate_toc($content){
+                preg_match_all('/<h([1-6])[^>]*>(.*?)<\/h[1-6]>/', $content, $matches, PREG_SET_ORDER);
+                if (empty($matches)) {
+                    return '';
+                }
+            $toc = '<aside class="table-of-contents"><ul>';
+
+            foreach ($matches as $i => $heading) {
+                $level = $heading[1];
+                $text  = strip_tags($heading[2]);
+                $id    = sanitize_title($text);
+
+
+                // Add to TOC list
+                $toc .= '<li class="toc-level-'.$level.'"><a href="#'.$id.'">'.$text.'</a></li>';
+            }
+
+                $toc .= '</ul></aside>';
+
+            // Insert TOC at the beginning of the content
+                return $toc;
+
+    }
 
         public function display_form_mobile(){
             ob_start();
@@ -96,7 +130,18 @@ if (!class_exists('MainPosts')) {
                     <?php endif; ?>
                         <div class="text-outro">
                             <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <?
+                            $tags = get_the_tags();
+                            if ( $tags ) {
+                                echo '<ul class="post-tags">';
+                                foreach ( $tags as $tag ) {
+                                    echo '<li><a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a></li>';
+                                }
+                                echo '</ul>';
+                            }
+                            ?>
                             <?php the_excerpt(); ?>
+                            <span class="read-time"><?php echo get_read_time(); ?></span>
                         </div>
                     </article>
                 <?php endwhile;
@@ -125,7 +170,18 @@ if (!class_exists('MainPosts')) {
                     
                     <div class="text-outro">
                         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                        <?
+                           $tags = get_the_tags();
+                            if ( $tags ) {
+                                echo '<ul class="post-tags">';
+                                foreach ( $tags as $tag ) {
+                                    echo '<li><a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a></li>';
+                                }
+                                echo '</ul>';
+                            }
+                        ?>
                         <?php the_excerpt(); ?>
+                        <span class="read-time"><?php echo get_read_time(); ?></span>
                     </div>
                 </article>
             <?php endwhile;

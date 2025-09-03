@@ -1,4 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
+   
+    const popup = document.getElementById("popup");
+    const popupClose = document.querySelector(".popup-close");
+    const gotIt = document.querySelector(".btn-primary");
+
+    letclicked = getCookie("clicked");
+    if(letclicked){
+        
+    }
+    else{
+        popup.classList.add("active");
+        
+    }
+
+    popupClose.addEventListener("click", function() {
+        popup.classList.remove("active");
+        document.cookie = "clicked=true";
+
+    })
+
+    gotIt.addEventListener("click", function(){
+        popup.classList.remove("active");
+        document.cookie = "clicked=true";
+    })
+
+
     const menu = document.querySelector(".material-icons.menu-toggle");
     const main = document.querySelector(".top_main");
     menu.addEventListener("click", function ()  {
@@ -24,6 +50,16 @@ function create($class){
     })
 
 }
+
+function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    const [key, value] = cookie.split("=");
+    if (key === name) return value;
+  }
+  return null;
+}
+
 
 /*main.addEventListener("click", function () {
     main.classList.remove("active");

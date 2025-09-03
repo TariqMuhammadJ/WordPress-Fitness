@@ -5,7 +5,7 @@
 get_header();
 
 ?>
-
+<?php locate_part('popup'); ?>
 <main class="main-body index">
     <?php get_menu() ?>
     <div class="cta">

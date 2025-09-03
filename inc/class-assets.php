@@ -49,6 +49,8 @@ if(!class_exists('MainAssets')){
 
         add_image_size('featured-thumb', 450, 300, true);
         add_image_size('latest-thumb', 200, 133, true);
+        add_image_size( 'single-thumb', 900, 400, true ); // 600x400 cropped
+
     }
 
     public function register_sidebar(){

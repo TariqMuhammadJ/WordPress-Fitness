@@ -16,4 +16,7 @@
             ]);
         ?>
     </div>
+    <div class="search-bar">
+        <?php locate_part('search') ?>
+    </div>
 </header>

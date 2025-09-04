@@ -6,7 +6,7 @@ if(is_page('blog')){
     locate_part('blog');
 }
 else{
-    the_content();
+    locate_part('static');
 }
 
 get_footer();

@@ -52,6 +52,9 @@ if (!class_exists('MainPosts')) {
         }
 
         public function custom_excerpt_length($length){
+            if(is_search()){
+                return 30;
+            }
             return 10;
         }
 

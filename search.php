@@ -19,6 +19,7 @@
             <div class="meta-search">
                 <section class="heading">
                 <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <?php locate_part('tags'); ?>
                 <span class="author"><?php the_author(); ?></span>
             </section>
             <section class="search-content">
@@ -31,15 +32,6 @@
     <div class="search-side">
         <?php locate_part('form'); ?>
     </div>
-    </div>
-    <div class="pagination">
-        <?php
-        the_posts_pagination( array(
-            'mid_size'  => 1,
-            'prev_text' => __('« Prev', textdomain),
-            'next_text' => __('Next »', textdomain),
-        ) );
-        ?>
     </div>
 
 </main>

@@ -173,16 +173,7 @@ if (!class_exists('MainPosts')) {
                     
                     <div class="text-outro">
                         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                        <?
-                           $tags = get_the_tags();
-                            if ( $tags ) {
-                                echo '<ul class="post-tags">';
-                                foreach ( $tags as $tag ) {
-                                    echo '<li><a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a></li>';
-                                }
-                                echo '</ul>';
-                            }
-                        ?>
+                         <?php locate_part('tags'); ?>
                         <?php the_excerpt(); ?>
                         <span class="read-time"><?php echo get_read_time(); ?></span>
                     </div>
@@ -193,6 +184,34 @@ if (!class_exists('MainPosts')) {
         endif;
 
         wp_reset_postdata();
+    }
+
+    public static function regularQuery(){
+        if(have_posts()) : 
+            while(have_posts()) : the_post(); ?>
+             <article <?php post_class(); ?>>
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="post-thumbnail">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('latest-thumb', ['class' => 'latest-img']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="text-outro">
+                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                         <?php locate_part('tags'); ?>
+                        <?php the_excerpt(); ?>
+                        <span class="read-time"><?php echo get_read_time(); ?></span>
+                    </div>
+                </article>
+            <?php endwhile;
+        else :
+            echo '<p>No posts found.</p>';
+        endif;
+
+        wp_reset_postdata();
+
     }
 
     }

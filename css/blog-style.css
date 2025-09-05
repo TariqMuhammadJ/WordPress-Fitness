@@ -57,7 +57,7 @@
 
 .latest {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 2 equal columns */
     gap: 2rem;
     margin-top: 2vw;
 }
@@ -65,12 +65,13 @@
 .latest article {
     display: flex;
     flex-direction: row; /* side by side */
-    gap: 1rem;           /* spacing between image & text */
-    align-items: stretch; /* make both sides equal height */
+    gap: 1rem;           /* spacing between image & text */ /* make both sides equal height */
+    align-items: stretch;
+
 }
 
 .featured-post .post-thumbnail {
-    flex: 0 0 50%;       /* lock thumbnail to 30% of article */
+    flex: 0 0 50%;       /* lock thumbnail to 50% of article */
     overflow: hidden;
 }
 
@@ -108,6 +109,7 @@
 .post-tags{
     display: flex;
     gap:0.5vw;
+    flex-wrap: wrap;
 }
 
 .post-tags li{

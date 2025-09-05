@@ -2,7 +2,7 @@
 .subscribe {
   /*flex:2; */
   background-color: rgba(0, 0, 0, 0.266);
-  width: fit-content;
+  width: min-content;
   box-sizing: border-box;
   padding: 1vw 1vw;
   border-radius: 0.2vw;
@@ -664,6 +664,28 @@ html {
 .not-found p {
   color: white;
   font-size: 5vw;
+}
+
+.tag-area {
+  width: 100%;
+  height: min-content;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tag-area a {
+  width: min-content;
+  background-color: purple;
+  height: min-content;
+  font-size: 22px;
+  box-sizing: border-box;
+  padding: 0.5vw 0.5vw;
+  border-radius: 0.4vw;
+}
+
+.tag-cloud-link {
+  font-size: 22px;
 }
 
 /*# sourceMappingURL=main-style.css.map */

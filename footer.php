@@ -11,6 +11,9 @@
     ?>
 
 </div>
+<div class="tag-area">
+  <?php wp_tag_cloud($args); ?>
+</div>
 
 </footer>
   </body>

@@ -2,6 +2,7 @@
 @import 'popup';   
 
 $index-font-family : 'Roboto', sans-serif;
+$page-margins-top:2vh;
 $font-title: clamp(2rem, 5vw, 4rem);
 $font-medium: clamp(1.5rem, 2vw, 2.5rem);
 $font-large: clamp(1.5rem, 3vw, 2.25rem);
@@ -96,7 +97,7 @@ h1 {
   }
   &.search-results{
     background-color: $primary-bg;
-    height: min-content;
+    min-height: 100vh;
     
   }
   &.tag-page{
@@ -104,11 +105,16 @@ h1 {
   }
 }
 .tag-page-results {
+  padding-top:$page-margins-top;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
   grid-auto-rows: minmax(150px, auto);
-  gap: 20px;
+  justify-content: center;
+  min-height:100vh;
+  gap: 1rem;
 }
+
+
 .main-search-page{
   display: flex;
   justify-content: space-evenly;
@@ -360,13 +366,38 @@ i.menu-icon {
     height:min-content;
     justify-content: center;
     align-items: center;
-    margin-top:5vw;
+    margin-top:$page-margins-top;
 
 }
 
 .static-content{
-    width:60%;
+    width:75%;
     height:min-content;
+    @media (max-width:800px){
+      width: 100%;
+    }
+}
+
+.static-content p{
+  margin-bottom:2vh;
+}
+
+.static-content div{
+  margin-bottom:2vh;
+}
+.static-content h1{
+  font-size:5vh;
+  line-height: normal;
+  font-weight: none;
+}
+
+.static-content h2{
+  font-size: 4vh;
+  font-weight: none;
+}
+
+.static-content h3{
+  font-size: 3vh;
 }
 .single-main {
   display: flex;
@@ -391,7 +422,6 @@ i.menu-icon {
 .table-of-contents ul li {
   background-color: rgb(60, 60, 59);
   margin-top: 0.5vw;
-  text-indent: 1vw;
   padding: 0.2vw 1vw;
   max-width: 30vw;
 }
@@ -416,6 +446,7 @@ html {
 .single-main div {
   padding: 1vw 2vw;
 }
+
 
 .entry-title h1 {
   font-size: $font-medium;
@@ -471,9 +502,16 @@ html {
 
 .entry-content ol,
 .entry-content ul {
-  list-style-type: disc;
+  list-style-type: none;
   list-style-position: inside;
 }
+
+.entry-content li::before{
+  content:"\27A4";
+  margin-right:2vw;
+}
+
+
 
 .entry-content ol li,
 .entry-content ul li {
@@ -574,12 +612,45 @@ html {
 .popup .btn-primary:hover {
   background-color: lighten($btn-primary, 10%);
 }
-
-.search-form{
-  background-color: purple;
-  padding:0.2vw 0.2vw;
+.search-form {
+    display: flex;               /* align input and button in a row */
+    align-items: center;         /* vertical alignment */
+    background-color: $primary-bg;
+    padding: 0.2vw;
+    box-sizing: border-box;
+    height: 5vh;                 /* optional: we may override this */
 }
 
+.search-form input[type="search"] {
+    flex: 1;                     /* take remaining space */
+    height: 5vh;               /* same height as icon */
+    line-height: 1;
+    padding: 0 0.5em;
+    color: black;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-submit span {
+    font-size: 3vh;          /* same size as input text */
+    display: flex;
+    height: min-content;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-submit {
+    height: 5vh; /* match input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid white;     /* your existing style */
+    padding: 0 0.5em;
+    box-sizing: border-box;
+    cursor: pointer;
+}
 /* Animation */
 @keyframes popup-zoom {
   from {
@@ -592,3 +663,17 @@ html {
   }
 }
 
+
+.not-found{
+  width: 100vw;
+  height:100vh;
+  background-color: #1c1d1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found p{
+  color:white;
+  font-size:5vw;
+}

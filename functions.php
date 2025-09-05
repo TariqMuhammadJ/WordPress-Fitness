@@ -34,6 +34,7 @@ if(!class_exists('mainLoader')){
             require_once DIR . '/inc/class-assets.php';
             require_once DIR . '/inc/class-helper.php';
             require_once DIR . '/inc/class-posts.php';
+            require_once DIR . '/inc/class-search.php';
         }
     }
 }

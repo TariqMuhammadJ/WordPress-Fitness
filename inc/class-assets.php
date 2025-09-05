@@ -11,10 +11,18 @@ if(!class_exists('MainAssets')){
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
         add_action('after_setup_theme', [$this, 'setup_items']);
         add_action('widgets_init', [$this, 'register_sidebar']);
+        /*add_action('init', [$this, 'maintenance']);*/
         
 
 
     }
+
+    /*public function maintenance(){
+        if(!is_user_admin()){
+            locate_part('maintenance');
+            exit;
+        }
+    }*/
 
     /* filemtime(FITNESS_DIR . '/css/main-style.css') */
 
@@ -36,7 +44,45 @@ if(!class_exists('MainAssets')){
     }
 
     public function setup_items(){
-       register_nav_menus([
+
+        add_theme_support('align-wide');
+
+        add_theme_support('editor-styles');
+        add_editor_style('editor-style.css'); // optional: your custom editor stylesheet
+
+        // Optional: Add a custom color palette
+        add_theme_support('editor-color-palette', [
+            [
+                'name'  => __('Primary Blue', 'your-theme'),
+                'slug'  => 'primary-blue',
+                'color' => '#0073aa',
+            ],
+            [
+                'name'  => __('Light Gray', 'your-theme'),
+                'slug'  => 'light-gray',
+                'color' => '#f5f5f5',
+            ],
+        ]);
+
+        // Optional: Add custom font sizes
+        add_theme_support('editor-font-sizes', [
+            [
+                'name' => __('Small', 'your-theme'),
+                'size' => 12,
+                'slug' => 'small'
+            ],
+            [
+                'name' => __('Large', 'your-theme'),
+                'size' => 36,
+                'slug' => 'large'
+            ]
+        ]);
+
+            // Optional: support for responsive embedded content
+        add_theme_support('responsive-embeds');
+
+        
+            register_nav_menus([
         'primary_menu' => __('Primary Menu', textdomain)
        ]);
 

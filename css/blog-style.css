@@ -106,12 +106,13 @@
 }
 
 .post-tags{
-    display: inline-flex;
+    display: flex;
     gap:0.5vw;
 }
 
 .post-tags li{
     background-color: rgb(58, 58, 103);
+    width:min-content;
     padding: 0.2vw 0.2vw;
     border-radius:0.5vw;
     font-size:0.8rem;

@@ -11,6 +11,7 @@ if (!class_exists('MainPosts')) {
             add_filter('the_content', [$this, 'mt_add_heading_ids']);
             add_filter('mt_toc_content', [$this, 'mt_generate_toc']);
             add_filter('the_excerpt', [$this, 'filters_gen']);
+
         }
 
         public function filters_gen($excerpt){

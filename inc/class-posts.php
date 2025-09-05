@@ -10,6 +10,14 @@ if (!class_exists('MainPosts')) {
             add_filter('excerpt_length', [$this, 'custom_excerpt_length']);
             add_filter('the_content', [$this, 'mt_add_heading_ids']);
             add_filter('mt_toc_content', [$this, 'mt_generate_toc']);
+            add_filter('the_excerpt', [$this, 'filters_gen']);
+        }
+
+        public function filters_gen($excerpt){
+             if (has_tag('trending')) {
+                $excerpt .= ' 🔥 <strong>This post is trending!</strong>';
+            }
+            return $excerpt;
         }
 
         public function mt_add_heading_ids($content){
@@ -52,10 +60,15 @@ if (!class_exists('MainPosts')) {
         }
 
         public function custom_excerpt_length($length){
+            if(has_tag('trending')){
+                return 40;
+            }
             if(is_search()){
                 return 30;
             }
             return 10;
+
+
         }
 
 
@@ -117,7 +130,7 @@ if (!class_exists('MainPosts')) {
         public static function featured($cat)
         {
             $featured = new WP_Query([
-                'category_name' => $cat,
+                'tag' => 'trending, updates',
                 'posts_per_page' => 1,
             ]);
 
@@ -201,8 +214,8 @@ if (!class_exists('MainPosts')) {
                     <div class="text-outro">
                         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                          <?php locate_part('tags'); ?>
-                        <?php the_excerpt(); ?>
-                        <span class="read-time"><?php echo get_read_time(); ?></span>
+                        <a href="<?php the_permalink(); ?>"><?php the_excerpt()?></a>
+                        <span class="read-time"><a href="<?php the_permalink(); ?>"><?php echo get_read_time(); ?></a></span>
                     </div>
                 </article>
             <?php endwhile;

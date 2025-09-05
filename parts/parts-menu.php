@@ -19,4 +19,7 @@
     <div class="search-bar">
         <?php locate_part('search') ?>
     </div>
+    <div class="rights">
+        <p>&copy; <?php echo date("Y"); ?> <?php bloginfo("name"); ?> All rights reserved</p>
+    </div>
 </header>

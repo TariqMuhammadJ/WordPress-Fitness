@@ -8,6 +8,7 @@
         </div>
         <div class="latest">
             <?php MainPosts::latest_posts() ?>
+            <?php the_content(); ?>
         </div>
         </section>
     <section class="side-bar">

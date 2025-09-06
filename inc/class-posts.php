@@ -10,16 +10,16 @@ if (!class_exists('MainPosts')) {
             add_filter('excerpt_length', [$this, 'custom_excerpt_length']);
             add_filter('the_content', [$this, 'mt_add_heading_ids']);
             add_filter('mt_toc_content', [$this, 'mt_generate_toc']);
-            add_filter('the_excerpt', [$this, 'filters_gen']);
+            //add_filter('the_excerpt', [$this, 'filters_gen']);
 
         }
 
-        public function filters_gen($excerpt){
+        /*public function filters_gen($excerpt){
              if (has_tag('trending')) {
                 $excerpt .= ' 🔥 <strong>This post is trending!</strong>';
             }
             return $excerpt;
-        }
+        } */
 
         public function mt_add_heading_ids($content){
              return preg_replace_callback('/<h([1-6])[^>]*>(.*?)<\/h[1-6]>/', function($matches) {

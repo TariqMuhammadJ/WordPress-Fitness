@@ -93,6 +93,11 @@
     flex-direction: column;
 }
 
+.text-outro h2 a:hover{
+    text-decoration: underline;
+
+}
+
 .text-outro .read-time{
     margin-top:auto;
     background-color: blue;
@@ -115,7 +120,7 @@
 .post-tags li{
     background-color: rgb(58, 58, 103);
     width:min-content;
-    padding: 0.2vw 0.2vw;
+    padding: 0.3vw 0.3vw;
     border-radius:0.5vw;
     font-size:0.8rem;
 }
